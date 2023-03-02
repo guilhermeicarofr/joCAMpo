@@ -1,3 +1,9 @@
-import runCamStream from './modules/camera.js';
+import runCamStream from './modules/cameraStream.js';
+import getVideoFrame from './modules/videoFrame.js';
 
-const stream = await runCamStream();
+const video = await runCamStream();
+
+setInterval(() => {
+  const frame = getVideoFrame(video);
+  console.log(frame)
+}, 1000);

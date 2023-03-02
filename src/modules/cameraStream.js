@@ -29,5 +29,5 @@ export default async function runCamStream() {
   });
 
   video.play();
-  return stream;
+  return video;
 }
