@@ -8,8 +8,8 @@ div#main {
 }
 
 div#videoStreamDiv {
-  width: 40vw;
-  height: 66vh;
+  min-width: 600px;
+  min-height: 450px;
   border: solid #BE5BDE 3px;
   display: flex;
   flex-direction: column;
@@ -18,6 +18,6 @@ div#videoStreamDiv {
 }
 
 video#videoStream {
-  width: 100%;
-  height: 100%;
+  width: 600px;
+  height: 450px;
 }
