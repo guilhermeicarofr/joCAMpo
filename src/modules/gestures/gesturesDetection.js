@@ -6,7 +6,8 @@ const { GestureEstimator } = window.fp;
 const estimator = new GestureEstimator(gesturesList);
 
 export default async function detectGesture(hands) {
-  if(!hands.length) return { name: '', score: 0 };
+  const noGesture = { name: '', score: 0 };
+  if(!hands.length) return noGesture;
   
   const hand = hands[0];
   const fingerMarks = hand.keypoints3D.map(keypoint => [
@@ -16,5 +17,5 @@ export default async function detectGesture(hands) {
   ]);
 
   const { gestures } = await estimator.estimate(fingerMarks, 9);
-  return gestures[0];
+  return gestures[0] || noGesture;
 }

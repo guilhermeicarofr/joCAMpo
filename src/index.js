@@ -8,9 +8,7 @@ const video = await runCamStream();
 setInterval(async () => {
   const frame = getVideoFrame(video);
   const hands = await detectHands(frame);
-  console.log('hands-on', hands.length?true:false);
-
   const gesture = await detectGesture(hands);
-  console.log(gesture);
 
+  console.log(`hands:${(hands.length)?'up':'down'}`, gesture);
 }, 100);
