@@ -1,0 +1,21 @@
+{
+  "name": "jo-cam-po",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "A Jo-ken-po game using javascript to process webcam image on tensorflow and read the player's gestures (rock, paper, scissors)",
+  "main": "./src/index.js",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guilhermeicarofr/joCAMpo.git"
+  },
+  "author": "guilhermeicarofr",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/guilhermeicarofr/joCAMpo/issues"
+  },
+  "homepage": "https://github.com/guilhermeicarofr/joCAMpo#readme",
+  "dependencies": {
+  }
+}
