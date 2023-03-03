@@ -11,8 +11,8 @@ async function playerTurn(resolve, video) {
     const hands = await detectHands(frame);
     const gesture = await detectGesture(hands);
     
-    //debugging
-    console.log(`hands:${(hands.length)?'up':'down'}`, confirmGesture);
+    //debug
+    //console.log(`hands:${(hands.length)?'up':'down'}`, confirmGesture);
   
     if(gesture.name && gesture.name === confirmGesture.gesture) {
       confirmGesture.count++;
@@ -38,6 +38,21 @@ async function opponentTurn(resolve) {
   }, 2000);
 }
 
+function gestureMatch(player, opponent) {
+  if(player===opponent) return 'draw';
+
+  if(player==='paper' && opponent==='rock') return 'win';
+  if(player==='paper' && opponent==='scissors') return 'loss';
+
+  if(player==='rock' && opponent==='scissors') return 'win';
+  if(player==='rock' && opponent==='paper') return 'loss';
+
+  if(player==='scissors' && opponent==='paper') return 'win';
+  if(player==='scissors' && opponent==='rock') return 'loss';S
+
+  return 'draw';
+}
+
 async function playGame(video) {
 
   let score = 0;
@@ -51,10 +66,16 @@ async function playGame(video) {
   
     console.log(opponentGesture);
 
-    score++;
+    const result = gestureMatch(playerGesture, opponentGesture);
+    if(result === 'win') score++;
+    //if(result === 'draw') continue;
+    if(result === 'loss') break;
+
+    console.log(result);
     console.log(score);
   }
 
+  console.log('End of game! Score:', score)
 }
 
 export { playGame };
