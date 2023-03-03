@@ -20,7 +20,9 @@ for (let finger of Finger.all) {
 }
 
 //scissors gesture
-scissorsGesture.addCurl(Finger.Thumb, FingerCurl.HalfCurl, 1.0);
+scissorsGesture.addCurl(Finger.Thumb, FingerCurl.HalfCurl, 0.9);
+scissorsGesture.addCurl(Finger.Thumb, FingerCurl.FullCurl, 0.9);
+scissorsGesture.addCurl(Finger.Thumb, FingerCurl.NoCurl, 0.9);
 scissorsGesture.addCurl(Finger.Index, FingerCurl.NoCurl, 1.0);
 scissorsGesture.addCurl(Finger.Middle, FingerCurl.NoCurl, 1.0);
 for (let finger of [Finger.Ring, Finger.Pinky]) {
