@@ -1,5 +1,5 @@
 import "https://cdn.jsdelivr.net/npm/fingerpose@0.1.0/dist/fingerpose.min.js";
-import { gesturesList, gestureStrings } from './gesturesLibrary.js';
+import { gesturesList, gesturesStrings } from './gesturesLibrary.js';
 
 const { GestureEstimator } = window.fp;
 

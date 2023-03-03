@@ -36,7 +36,7 @@ const gesturesList = [
   scissorsGesture
 ];
 
-const gestureStrings = {
+const gesturesStrings = {
   'rock': '✊️',
   'paper': '🖐',
   'scissors': '✌️'
@@ -44,5 +44,5 @@ const gestureStrings = {
 
 export {
   gesturesList,
-  gestureStrings
+  gesturesStrings
 };
