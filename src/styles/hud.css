@@ -1,0 +1,64 @@
+h1#title {
+  position: absolute;
+  top: 20px;
+  left: calc(100vw/2 - 200px/2);
+  width: 200px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 30px;
+  font-family: 'Trade Winds', cursive;
+  color: yellow;
+}
+
+h3#score {
+  position: absolute;
+  bottom: 15px;
+  left: calc(100vw/2 - 200px/2);
+  width: 200px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 30px;
+  font-family: 'Trade Winds', cursive;
+  color: yellow;
+}
+
+div#playerGesture {
+  position: absolute;
+  top: calc(100vh/2 - 200px/2);
+  left: calc(100vw/2 - 600px/2 - 1.5px - 200px/2);
+}
+
+div#opponentGesture {
+  position: absolute;
+  top: calc(100vh/2 - 200px/2);
+  right: calc(100vw/2 - 600px/2 - 1.5px - 200px/2);
+}
+
+div.gesture {
+  width: 200px;
+  height: 200px;
+  border-radius: 100px;
+  background-color: yellow;
+  border: solid rgb(255, 0, 255) 3px;
+}
+
+h2#result {
+  position: absolute;
+  top: calc(100vh/2 - 50px/2);
+  left: calc(100vw/2 - 200px/2);
+  width: 200px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: 'Trade Winds', cursive;
+  font-size: 50px;
+  color: yellow;
+}
