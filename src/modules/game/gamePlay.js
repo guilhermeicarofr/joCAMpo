@@ -61,7 +61,7 @@ async function delay(resolve, delay) {
   }, delay);
 }
 
-export async function playGame(video) {
+async function playGame(resolve, video) {
   let score = 0;
   setScore(0);
 
@@ -93,4 +93,16 @@ export async function playGame(video) {
 
   console.log('End of game! Score:', score);
   setResult(`End of game! Score: ${score}`);
+  resolve();
+  return;
+}
+
+export async function runApp(video) {
+  let play = true;
+  
+  while(play) {
+    await new Promise((resolve) => playGame(resolve, video));
+    play = window.confirm('Play again?');
+  }
+  return;
 }
