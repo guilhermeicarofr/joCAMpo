@@ -1,11 +1,11 @@
-import "https://cdn.jsdelivr.net/npm/fingerpose@0.1.0/dist/fingerpose.min.js";
+import 'https://cdn.jsdelivr.net/npm/fingerpose@0.1.0/dist/fingerpose.min.js';
 import { gesturesList, gesturesStrings } from './gesturesLibrary.js';
 
 const { GestureEstimator } = window.fp;
 
 const estimator = new GestureEstimator(gesturesList);
 
-export default async function detectGesture(hands) {
+export async function detectGesture(hands) {
   const noGesture = { name: '', score: 0 };
   if(!hands.length) return noGesture;
   

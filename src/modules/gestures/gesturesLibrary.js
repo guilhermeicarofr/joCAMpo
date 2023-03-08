@@ -1,4 +1,4 @@
-import "https://cdn.jsdelivr.net/npm/fingerpose@0.1.0/dist/fingerpose.min.js";
+import 'https://cdn.jsdelivr.net/npm/fingerpose@0.1.0/dist/fingerpose.min.js';
 
 const { GestureDescription, Finger, FingerCurl } = window.fp;
 

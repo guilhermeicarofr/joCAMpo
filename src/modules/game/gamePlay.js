@@ -1,6 +1,7 @@
-import detectGesture from '../modules/gestures/gesturesDetection.js';
-import detectHands from '../modules/handsDetection.js';
-import getVideoFrame from '../modules/videoFrame.js';
+import { setGesture, setGestureLoading, setOpponentLoading, setResult, setScore } from '../hud/hud.js';
+import { detectGesture } from '../gestures/gesturesDetection.js';
+import { detectHands } from '../video/handsDetection.js';
+import { getVideoFrame } from '../video/videoFrame.js';
 
 async function playerTurn(resolve, video) {
   let confirmGesture = { count: 0, gesture: ''};
@@ -11,9 +12,6 @@ async function playerTurn(resolve, video) {
     const hands = await detectHands(frame);
     const gesture = await detectGesture(hands);
     
-    //debug
-    //console.log(`hands:${(hands.length)?'up':'down'}`, confirmGesture);
-  
     if(gesture.name && gesture.name === confirmGesture.gesture) {
       confirmGesture.count++;
     } else {
@@ -21,7 +19,10 @@ async function playerTurn(resolve, video) {
       confirmGesture.gesture = gesture.name;
     }
   
-    if(confirmGesture.count > 20) {
+    setGesture('player', confirmGesture.gesture);
+    setGestureLoading(confirmGesture.count);
+
+    if(confirmGesture.count > 25) {
       playerGesture = confirmGesture.gesture;
       confirmGesture = { count: 0, gesture: ''};
       clearInterval(interval);
@@ -31,6 +32,7 @@ async function playerTurn(resolve, video) {
 }
 
 async function opponentTurn(resolve) {
+  setOpponentLoading();
   setTimeout(() => {
     const index =  Math.floor(Math.random() * 3);
     const gesture = [ 'rock', 'paper', 'scissors' ][index];
@@ -53,29 +55,54 @@ function gestureMatch(player, opponent) {
   return 'draw';
 }
 
-async function playGame(video) {
-
-  let score = 0;
-
-  while(true) {
-    let playerGesture = await new Promise((resolve) => playerTurn(resolve, video));
-
-    console.log(playerGesture)
-  
-    const opponentGesture = await new Promise(opponentTurn);
-  
-    console.log(opponentGesture);
-
-    const result = gestureMatch(playerGesture, opponentGesture);
-    if(result === 'win') score++;
-    //if(result === 'draw') continue;
-    if(result === 'loss') break;
-
-    console.log(result);
-    console.log(score);
-  }
-
-  console.log('End of game! Score:', score)
+async function delay(resolve, delay) {
+  setTimeout(() => {
+    resolve();
+  }, delay);
 }
 
-export { playGame };
+async function playGame(resolve, video) {
+  let score = 0;
+  setScore(0);
+
+  while(true) {
+    setGesture('player', '');
+    setGesture('opponent', '');
+    setResult('');
+
+    let playerGesture = await new Promise((resolve) => playerTurn(resolve, video));
+    console.log(playerGesture);
+    setGesture('player', playerGesture);
+  
+    const opponentGesture = await new Promise(opponentTurn);
+    console.log(opponentGesture);
+    setGesture('opponent', opponentGesture);
+
+    const result = gestureMatch(playerGesture, opponentGesture);
+    console.log(result);
+    setResult(result);
+
+    if(result === 'win') score++;
+    console.log(score);
+    setScore(score);
+
+    await new Promise((resolve) => delay(resolve, 3000));
+    //if(result === 'draw') continue;
+    if(result === 'loss') break;
+  }
+
+  console.log('End of game! Score:', score);
+  setResult(`End of game! Score: ${score}`);
+  resolve();
+  return;
+}
+
+export async function runApp(video) {
+  let play = true;
+  
+  while(play) {
+    await new Promise((resolve) => playGame(resolve, video));
+    play = window.confirm('Play again?');
+  }
+  return;
+}

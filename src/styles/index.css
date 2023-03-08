@@ -10,7 +10,7 @@ div#main {
 div#videoStreamDiv {
   min-width: 600px;
   min-height: 450px;
-  border: solid #BE5BDE 3px;
+  border: solid rgb(255, 0, 255) 3px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -20,4 +20,13 @@ div#videoStreamDiv {
 video#videoStream {
   width: 600px;
   height: 450px;
+}
+
+div#hud {
+  min-width: 100%;
+  min-height: 100%;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  background-color: rgba(255, 0, 255, 0.2);
 }
