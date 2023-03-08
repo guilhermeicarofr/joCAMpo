@@ -1,6 +1,6 @@
-import { playGame } from './game/gamePlay.js';
-import { renderHUD } from './hud/hud.js';
-import runCamStream from './modules/cameraStream.js';
+import { playGame } from './modules/game/gamePlay.js';
+import { renderHUD } from './modules/hud/hud.js';
+import { runCamStream } from './modules/video/cameraStream.js';
 
 const video = await runCamStream();
 

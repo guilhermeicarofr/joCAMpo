@@ -1,7 +1,7 @@
 import { setGesture, setGestureLoading, setOpponentLoading, setResult, setScore } from '../hud/hud.js';
-import detectGesture from '../modules/gestures/gesturesDetection.js';
-import detectHands from '../modules/handsDetection.js';
-import getVideoFrame from '../modules/videoFrame.js';
+import { detectGesture } from '../gestures/gesturesDetection.js';
+import { detectHands } from '../video/handsDetection.js';
+import { getVideoFrame } from '../video/videoFrame.js';
 
 async function playerTurn(resolve, video) {
   let confirmGesture = { count: 0, gesture: ''};
@@ -61,7 +61,7 @@ async function delay(resolve, delay) {
   }, delay);
 }
 
-async function playGame(video) {
+export async function playGame(video) {
   let score = 0;
   setScore(0);
 
@@ -94,5 +94,3 @@ async function playGame(video) {
   console.log('End of game! Score:', score);
   setResult(`End of game! Score: ${score}`);
 }
-
-export { playGame };

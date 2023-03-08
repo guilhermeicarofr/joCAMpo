@@ -1,4 +1,4 @@
-export default async function runCamStream() {
+export async function runCamStream() {
   if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
     throw new Error(
       'Browser mediaDevices'
@@ -10,7 +10,7 @@ export default async function runCamStream() {
     video: {
       width: globalThis.screen.availWidth,
       height: globalThis.screen.availHeight,
-      facingMode: "user",
+      facingMode: 'user',
       frameRate: {
         ideal: 60
       }

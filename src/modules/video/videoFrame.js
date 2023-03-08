@@ -1,4 +1,4 @@
-export default function getVideoFrame(video) {
+export function getVideoFrame(video) {
   const canvas = document.createElement('canvas');
   const context = canvas.getContext('2d', { willReadFrequently: true });
   
