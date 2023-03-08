@@ -44,8 +44,24 @@ div.gesture {
   width: 200px;
   height: 200px;
   border-radius: 100px;
-  background-color: yellow;
+  background-color: rgb(255,234,0);
   border: solid rgb(255, 0, 255) 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div.gesture > img {
+  width: 120px;
+  height: 120px;
+  opacity: var(--progress);
+}
+
+
+div.gesture > img.loading {
+  width: 200px;
+  height: 200px;
+  border-radius: 100px;
 }
 
 h2#result {
